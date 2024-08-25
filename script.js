@@ -3,6 +3,8 @@ let highScore = 0;
 let cross = true;
 let gameOver = false;
 let gameStarted = false; // Flag to check if the game has started
+let start = new Audio("music.mp3");
+let over = new Audio("gameover.mp3");
 
 document.onkeydown = function (e) {
     if (gameStarted && !gameOver) {  // Only allow movement if the game is started and not over
@@ -50,7 +52,10 @@ setInterval(() => {
                     congo.style.visibility = 'hidden';
                 },1500)
             }
-                gameover.style.visibility = 'visible';
+            gameover.style.visibility = 'visible';
+            over.currentTime = 0;
+            over.play();
+            start.pause();
             showRestartButton();  // Show the restart button when game is over
         } else if (offsetX < 50 && cross) {
             score += 1;
@@ -69,6 +74,8 @@ function updateScore(score) {
 }
 
 function startGame() {
+    over.pause();
+    start.play();
     gameStarted = true;
     gameOver = false;
     score = 0;
@@ -103,6 +110,9 @@ function showRestartButton() {
 }
 
 function restartGame() {
+    start.currentTime = 0;
+    start.play();
+    over.pause();
     gameOver = false;
     score = 0;
     updateScore(score);
