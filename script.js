@@ -9,19 +9,19 @@ let over = new Audio("gameover.mp3");
 document.onkeydown = function (e) {
     if (gameStarted && !gameOver) {  // Only allow movement if the game is started and not over
         console.log("Key code is: ", e.keyCode)
-        if (e.keyCode == 38) {
+        if (e.keyCode == 38 || e.keyCode == 87) {
             dino = document.querySelector('.dino');
             dino.classList.add('animateDino');
             setTimeout(() => {
                 dino.classList.remove('animateDino')
             }, 700);
         }
-        if (e.keyCode == 39) {
+        if (e.keyCode == 39 || e.keyCode == 68) {
             dino = document.querySelector('.dino');
             dinoX = parseInt(window.getComputedStyle(dino, null).getPropertyValue('left'));
             dino.style.left = dinoX + 112 + "px";
         }
-        if (e.keyCode == 37) {
+        if (e.keyCode == 37 || e.keyCode == 65) {
             dino = document.querySelector('.dino');
             dinoX = parseInt(window.getComputedStyle(dino, null).getPropertyValue('left'));
             dino.style.left = (dinoX - 112) + "px";
